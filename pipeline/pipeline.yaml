@@ -37,7 +37,12 @@ jobs:
                 cd gorrent-git
                 make test
 
-
+  - name: test
+    public: true:
+    plan:
+      - get: gorrent-git
+        trigger: true
+        passed: [set-self]
       - task: compile
         config:
           platform: linux
