@@ -42,6 +42,7 @@ func TestSetPiece(t *testing.T) {
 			output: bitfield.Bitfield{0b01010100, 0b01010100},
 		},
 	}
+
 	for _, test := range tests {
 		bf := test.input
 		bf.SetPiece(test.index)

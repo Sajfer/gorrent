@@ -3,7 +3,6 @@ package client
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"net"
 	"time"
 
@@ -85,12 +84,9 @@ func completeHandshake(conn net.Conn, infohash, peerID [20]byte) (*handshake.Han
 	req := handshake.New(infohash, peerID)
 	_, err = conn.Write(req.Serialize())
 	if err != nil {
-		log.Println("ERROR", err)
 		return nil, err
 	}
-	log.Println("TEST")
 	res, err := handshake.Read(conn)
-	log.Println("Response:", res)
 	if err != nil {
 		return nil, err
 	}
