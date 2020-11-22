@@ -8,6 +8,7 @@ import (
 
 	"github.com/sajfer/gorrent/peers"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestBuildTrackerURL(t *testing.T) {
@@ -40,7 +41,8 @@ func TestRequestPeers(t *testing.T) {
 					192, 0, 2, 123, 0x1A, 0xE1, // 0x1AE1 = 6881
 					127, 0, 0, 1, 0x1A, 0xE9, // 0x1AE9 = 6889
 				}) + "e")
-		w.Write(response)
+		_, err := w.Write(response)
+		require.Nil(t, err)
 	}))
 	defer ts.Close()
 	tf := TorrentFile{

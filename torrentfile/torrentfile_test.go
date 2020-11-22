@@ -20,7 +20,8 @@ func TestOpen(t *testing.T) {
 	if *update {
 		serialized, err := json.MarshalIndent(torrent, "", " ")
 		require.Nil(t, err)
-		ioutil.WriteFile(goldenPath, serialized, 0644)
+		err = ioutil.WriteFile(goldenPath, serialized, 0644)
+		require.Nil(t, err)
 	}
 
 	expected := TorrentFile{}

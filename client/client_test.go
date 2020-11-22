@@ -37,7 +37,8 @@ func TestRecvBitfield(t *testing.T) {
 		clientConn, serverConn := net.Pipe()
 		go func() {
 
-			serverConn.Write(test.msg)
+			_, err := serverConn.Write(test.msg)
+			require.Nil(t, err)
 			serverConn.Close()
 		}()
 

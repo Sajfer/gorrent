@@ -51,7 +51,11 @@ func New(peer peers.Peer, peerID, infoHash [20]byte) (*Client, error) {
 }
 
 func recvBitfield(conn net.Conn) (bitfield.Bitfield, error) {
-	conn.SetDeadline(time.Now().Add(5 * time.Second))
+	err := conn.SetDeadline(time.Now().Add(5 * time.Second))
+	if err != nil {
+		return nil, err
+	}
+
 	defer conn.SetDeadline(time.Time{})
 
 	msg, err := message.Read(conn)
