@@ -38,7 +38,7 @@ jobs:
                 make test
 
   - name: test
-    public: true:
+    public: true
     plan:
       - get: gorrent-git
         trigger: true
