@@ -110,3 +110,40 @@ func ParseHave(msg *Message) (int, error) {
 	index := int(binary.BigEndian.Uint32(msg.Payload))
 	return index, nil
 }
+
+func (m *Message) name() string {
+	if m == nil {
+		return "KeepAlive"
+	}
+
+	switch m.ID {
+	case MsgChoke:
+		return "Choke"
+	case MsgUnchoke:
+		return "Unchoke"
+	case MsgInterested:
+		return "Interested"
+	case MsgNotInterested:
+		return "NotInterested"
+	case MsgHave:
+		return "have"
+	case MsgBitField:
+		return "Bitfield"
+	case MsgPiece:
+		return "Piece"
+	case MsgRequest:
+		return "Request"
+	case MsgCancel:
+		return "Cancel"
+
+	default:
+		return fmt.Sprintf("Unknown#%d", m.ID)
+	}
+}
+
+func (m *Message) String() string {
+	if m == nil {
+		return m.name()
+	}
+	return fmt.Sprintf("%s [%d]", m.name(), len(m.Payload))
+}
