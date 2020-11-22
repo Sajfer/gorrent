@@ -119,3 +119,9 @@ func (c *Client) SendInterested() error {
 	_, err := c.Conn.Write(msg.Serialize())
 	return err
 }
+
+func (c *Client) SendNotInterested() error {
+	msg := message.Message{ID: message.MsgNotInterested}
+	_, err := c.Conn.Write(msg.Serialize())
+	return err
+}

@@ -1,11 +1,29 @@
 package bitfield_test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/sajfer/gorrent/bitfield"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestMain(m *testing.M) {
+	// call flag.Parse() here if TestMain uses flags
+	rc := m.Run()
+
+	// rc 0 means we've passed,
+	// and CoverMode will be non empty if run with -cover
+	if rc == 0 && testing.CoverMode() != "" {
+		c := testing.Coverage()
+		if c < 0.8 {
+			fmt.Println("Tests passed but coverage failed at", c)
+			rc = -1
+		}
+	}
+	os.Exit(rc)
+}
 
 func TestHasPiece(t *testing.T) {
 	bf := bitfield.Bitfield{0b01010100, 0b01010100}
