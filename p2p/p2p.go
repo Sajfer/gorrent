@@ -129,7 +129,6 @@ func attemtDownloadPiece(c *client.Client, pw *pieceWork) ([]byte, error) {
 		client: c,
 		buf:    make([]byte, pw.length),
 	}
-
 	c.Conn.SetDeadline(time.Now().Add(30 * time.Second))
 	defer c.Conn.SetDeadline(time.Time{})
 
