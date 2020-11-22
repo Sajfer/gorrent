@@ -13,7 +13,7 @@ jobs:
     plan:
       - get: gorrent-git
         trigger: true
-      - set_pipeline: set-pipelines
+      - set_pipeline: gorrent
         file: gorrent-git/pipeline/pipeline.yaml
   - name: test
     public: true
