@@ -1,4 +1,4 @@
-module gorrent
+module github.com/sajfer/gorrent
 
 go 1.15
 
