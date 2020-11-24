@@ -1,23 +1,24 @@
 package main
 
 import (
-	"log"
-	"os"
-
-	"github.com/sajfer/gorrent/torrentfile"
+	"github.com/sajfer/gorrent/api"
 )
 
 func main() {
-	torrentPath := os.Args[1]
-	downloadPath := os.Args[2]
+	//	torrentPath := os.Args[1]
+	//	downloadPath := os.Args[2]
 
-	torrent, err := torrentfile.Open(torrentPath)
-	if err != nil {
-		log.Fatal(err)
-	}
+	//go func() {
+	api.HandleRequests()
+	//}()
 
-	err = torrent.DownloadToFile(downloadPath)
-	if err != nil {
-		log.Fatal(err)
-	}
+	//torrent, err := torrentfile.Open(torrentPath)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+
+	//err = torrent.DownloadToFile(downloadPath)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 }
